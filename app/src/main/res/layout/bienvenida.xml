@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C0E0F0"
+    android:padding="24dp"> <!-- Fondo azul muy claro -->
+
+
+
+
+        <TextClock
+            android:id="@+id/textClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:format12Hour="HH:mm"
+            android:format24Hour="HH:mm"
+            android:textColor="#5080A0"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- TEXTO "BIENVENIDO" -->
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="44dp"
+            android:src="@drawable/img_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textClock" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="229dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="Bienvenido"
+            android:textColor="#3F51B5"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+        <!-- DNI DEL USUARIO -->
+        <EditText
+            android:id="@+id/etDni"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="22dp"
+            android:background="#F0F0F0"
+            android:hint="Introduce tu DNI"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#5080A0"
+            android:textColorHint="#5080A0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
+
+        <!-- BOTÓN ENTRAR -->
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="220dp"
+            android:layout_height="60dp"
+            android:backgroundTint="#2080C0"
+            android:text="Entrar"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etDni"
+            app:layout_constraintVertical_bias="0.264" />  <!-- Azul fuerte del diseño -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

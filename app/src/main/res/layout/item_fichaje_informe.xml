@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Cabecera del fichaje -->
+        <TextView
+            android:id="@+id/tvCabeceraFichaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fichaje #1: 08:00 - 12:30 (4h 30m)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <!-- Contenedor de visitas -->
+        <LinearLayout
+            android:id="@+id/layoutVisitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp">
+            <!-- Las visitas se añadirán aquí -->
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

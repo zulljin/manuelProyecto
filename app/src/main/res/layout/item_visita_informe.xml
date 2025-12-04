@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="8dp">
+
+    <!-- Nombre del área y duración -->
+    <TextView
+        android:id="@+id/tvAreaVisita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Casa - 45 min"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:paddingBottom="4dp"/>
+
+    <!-- Contenedor de tareas -->
+    <LinearLayout
+        android:id="@+id/layoutTareas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp">
+        <!-- Las tareas se añadirán aquí -->
+    </LinearLayout>
+
+</LinearLayout>

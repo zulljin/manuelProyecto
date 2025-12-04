@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#E3F2FD"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Informe de fichajes"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="8dp"/>
+
+        <!-- Card con datos del empleado -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Nombre empleado -->
+                <TextView
+                    android:id="@+id/tvNombreEmpleado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Empleado"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="8dp"/>
+
+                <!-- Fecha actual -->
+                <TextView
+                    android:id="@+id/tvFechaHoy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hoy: 30/11/2025"
+                    android:textSize="14sp"
+                    android:paddingBottom="8dp"/>
+
+                <!-- Total hoy -->
+                <TextView
+                    android:id="@+id/tvTotalHoy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total hoy: Xh Ym"
+                    android:textSize="16sp"
+                    android:textColor="#4CAF50"
+                    android:textStyle="bold"
+                    android:paddingBottom="4dp"/>
+
+                <!-- Total mes -->
+                <TextView
+                    android:id="@+id/tvTotalMes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total mes: Xh  Ym"
+                    android:textSize="16sp"
+                    android:textColor="#2196F3"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Título fichajes del día -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fichajes de hoy:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <!-- Lista de fichajes -->
+        <LinearLayout
+            android:id="@+id/layoutFichajes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Los fichajes se añadirán aquí dinámicamente -->
+        </LinearLayout>
+
+        <!-- Mensaje si no hay fichajes -->
+        <TextView
+            android:id="@+id/tvSinFichajes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No hay fichajes registrados hoy"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:padding="24dp"
+            android:visibility="gone"/>
+
+        <!-- Botón volver -->
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
