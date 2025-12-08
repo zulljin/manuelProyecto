@@ -3,25 +3,33 @@ package com.example.arefi.entity;
 public class Visita {
 
     private int idVisita;
+    private int idFichaje;
     private int idLocalizacion;
     private long horaEntrada;
     private Long horaSalida; // Puede ser null si la visita sigue activa
     private Integer duracionMinutos; // Puede ser null si no se ha finalizado
 
-    // Constructor principal
-    public Visita(int idVisita, int idLocalizacion, long horaEntrada, Long horaSalida) {
+
+    public Visita(int idVisita, int idFichaje, int idLocalizacion, long horaEntrada, Long horaSalida, Integer duracionMinutos ) {
         this.idVisita = idVisita;
+        this.idFichaje = idFichaje;
         this.idLocalizacion = idLocalizacion;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
+        this.duracionMinutos = duracionMinutos;
     }
 
-    // Constructor completo (opcional)
-    public Visita(int idVisita, int idLocalizacion, long horaEntrada, Long horaSalida, Integer duracionMinutos) {
+    public Visita(int idVisita,int idLocalizacion, long horaEntrada, Long horaSalida, Integer duracionMinutos) {
         this.idVisita = idVisita;
         this.idLocalizacion = idLocalizacion;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
+        this.duracionMinutos = duracionMinutos;
+    }
+    public Visita(int idVisita, int idLocalizacion, long horaEntrada, Integer duracionMinutos) {
+        this.idVisita = idVisita;
+        this.idLocalizacion = idLocalizacion;
+        this.horaEntrada = horaEntrada;
         this.duracionMinutos = duracionMinutos;
     }
 
@@ -32,6 +40,14 @@ public class Visita {
 
     public void setIdVisita(int idVisita) {
         this.idVisita = idVisita;
+    }
+
+    public int getIdFichaje() {
+        return idFichaje;
+    }
+
+    public void setIdFichaje(int idFichaje) {
+        this.idFichaje = idFichaje;
     }
 
     public int getIdLocalizacion() {

@@ -36,7 +36,7 @@ public class TrackingService extends Service {  // es necesario que sea service 
 
     private static final String CHANNEL_ID = "TrackingChannel";
     private static final int NOTIFICATION_ID = 1;
-    private static final int INTERVALO_TRACKING = 30 * 1000; // 5 * 60 * 1000; 5 minutos
+    private static final int INTERVALO_TRACKING =  5 * 60 * 1000; // 5 * 60 * 1000; 5 minutos
 
     private Handler handlerTracking;
     private Runnable runnableTracking;
@@ -204,7 +204,7 @@ public class TrackingService extends Service {  // es necesario que sea service 
             return;
         }
 
-        // DETECTAR ÁREA usando repository
+        // DETECTAR ÁREA
         int areaActual = localizacionRepository.detectarArea(lat, lon);
 
         // Obtener visita activa
