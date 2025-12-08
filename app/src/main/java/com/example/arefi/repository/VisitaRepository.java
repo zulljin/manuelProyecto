@@ -11,6 +11,5 @@ public interface VisitaRepository {
     List<Visita> obtenerVisitasPorFichaje(int idFichaje);
     long crearVisita(int idFichaje, int idLocalizacion, int duracionMinutos);
     void finalizarVisita(int idVisita);
-    //List<LocalizacionTarea> obtenerAreasAgrupadasPorFichajeConTiempoTotal(int idFichaje);
     Cursor obtenerAreasAgrupadasPorFichajeConTiempoTotal(int idFichaje);
 }
