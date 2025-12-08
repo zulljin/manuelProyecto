@@ -292,14 +292,14 @@
         }
         private void validarZonaYFichar() {
 
-            // 1️⃣ Comprobación de permisos de ubicación
+            // Comprobación de permisos de ubicación
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Sin permisos de ubicación", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 2️⃣ Comprobación de GPS activado
+            // Comprobación de GPS activado
             if (!gestorUbicacion.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 new AlertDialog.Builder(this)
                         .setTitle("GPS Desactivado")
@@ -309,10 +309,10 @@
                 return;
             }
 
-            // 3️⃣ Mostrar diálogo de carga mientras se obtiene ubicación
+            // Mostrar diálogo de carga mientras se obtiene ubicación
             mostrarDialogoCarga();
 
-            // 4️⃣ Solicitar ubicación única
+            // Solicitar ubicación única
             gestorUbicacion.requestSingleUpdate(
                     LocationManager.GPS_PROVIDER,
                     new LocationListener() {
@@ -324,7 +324,7 @@
                             double lat = ubicacion.getLatitude();
                             double lon = ubicacion.getLongitude();
 
-                            // 5️⃣ Detectar zona usando repository
+                            // Detectar zona usando repository
                             int idZona = localizacionRepository.detectarZonaDeTrabajo(lat, lon);
 
                             if (idZona != -1) {
@@ -334,15 +334,15 @@
                                         "Fichaje correcto en zona: " + nombreZona,
                                         Toast.LENGTH_LONG).show();
 
-                                // 6️⃣ Crear fichaje usando repository
+                                // Crear fichaje usando repository
                                 fichajeRepository.crearFichaje(empleadoId);
 
-                                // 7️⃣ Obtener fichaje activo
+                                // Obtener fichaje activo
                                 Fichaje fichaje = fichajeRepository.obtenerFichajeActivo(empleadoId);
                                 int idFichaje = fichaje != null ? fichaje.getIdFichaje() : -1;
                                 Log.d("MainActivity", "Fichaje creado ID (repo): " + idFichaje);
 
-                                // 8️⃣ Detectar área usando repository
+                                // Detectar área usando repository
                                 int areaActual = localizacionRepository.detectarArea(lat, lon);
 
                                 if (areaActual != -1) {
@@ -353,7 +353,7 @@
                                     Log.d("MainActivity", "Primera visita creada: " + nombreArea);
                                 }
 
-                                // 9️⃣ Actualizar UI y tracking
+                                // Actualizar UI y tracking
                                 actualizarEstadoFichaje();
                                 iniciarTracking(idFichaje);
 
