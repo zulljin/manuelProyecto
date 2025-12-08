@@ -39,7 +39,7 @@ public class BienvenidaActivity extends AppCompatActivity {
                 return;
             }
 
-            // Buscamos al empleado por DNI usando Room
+            // Buscamos al empleado por DNI
             int empleadoId = empleadoRepository.obtenerIdEmpleadoPorDni(dniIngresado);
 
             if (empleadoId != -1) {
