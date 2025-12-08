@@ -36,7 +36,7 @@ public class TrackingService extends Service {  // es necesario que sea service 
 
     private static final String CHANNEL_ID = "TrackingChannel";
     private static final int NOTIFICATION_ID = 1;
-    private static final int INTERVALO_TRACKING =  5 * 60 * 1000; // 5 * 60 * 1000; 5 minutos
+    private static final int INTERVALO_TRACKING =  20 * 1000; // 5 * 60 * 1000; 5 minutos
 
     private Handler handlerTracking;
     private Runnable runnableTracking;
@@ -189,16 +189,12 @@ public class TrackingService extends Service {  // es necesario que sea service 
             if (visitaActiva != null) {
                 visitaRepository.finalizarVisita(visitaActiva.getIdVisita());
             }
-
             // Finalizar fichaje usando repository
             fichajeRepository.finalizarFichaje(fichajeActivoId);
-
             // Notificar al usuario
             mostrarToast("Saliste de la zona de trabajo\nFichaje cerrado automáticamente");
-
             // Abrir pantalla de tareas
             abrirSeleccionTareas();
-
             // Detener servicio
             stopSelf();
             return;
@@ -206,51 +202,50 @@ public class TrackingService extends Service {  // es necesario que sea service 
 
         // DETECTAR ÁREA
         int areaActual = localizacionRepository.detectarArea(lat, lon);
+        String nombreAreaActual = localizacionRepository.obtenerNombreLocalizacion(areaActual);
 
         // Obtener visita activa
         Visita visitaActiva = visitaRepository.obtenerVisitaActiva(fichajeActivoId);
+        String nombreAreaVisita = null;
+        int areaVisitaActiva = -1;
 
         if (visitaActiva != null) {
-            int idVisitaActiva = visitaActiva.getIdVisita();
-            int areaVisitaActiva = visitaActiva.getIdLocalizacion();
+            areaVisitaActiva = visitaActiva.getIdLocalizacion();
+            nombreAreaVisita = localizacionRepository.obtenerNombreLocalizacion(areaVisitaActiva);
 
-            if (areaActual == areaVisitaActiva) {
-                String nombreArea = localizacionRepository.obtenerNombreLocalizacion(areaActual);
+            if (nombreAreaActual.equals(nombreAreaVisita)) {
                 Intent intent = new Intent("AREA_ACTUALIZADA");
-                intent.putExtra("nombre_area", nombreArea);
+                intent.putExtra("nombre_area", nombreAreaActual);
                 sendBroadcast(intent);
 
-                Log.d("TrackingService", "Sigue en: " + nombreArea);
+                Log.d("TrackingService", "Está en: " + nombreAreaActual);
 
             } else {
-                visitaRepository.finalizarVisita(idVisitaActiva);
+                // Cambio de área o primera visita
+                if (visitaActiva != null) {
+                    // Finalizar visita anterior
+                    visitaRepository.finalizarVisita(visitaActiva.getIdVisita());
+                }
 
                 if (areaActual != -1) {
+                    // Crear nueva visita
                     visitaRepository.crearVisita(fichajeActivoId, areaActual, 0);
-                    String nombreArea = localizacionRepository.obtenerNombreLocalizacion(areaActual);
-                    Log.d("TrackingService", "Cambió a: " + nombreArea);
 
                     Intent intent = new Intent("AREA_ACTUALIZADA");
-                    intent.putExtra("nombre_area", nombreArea);
+                    intent.putExtra("nombre_area", nombreAreaActual);
                     sendBroadcast(intent);
-                } else {
-                    Log.d("TrackingService", "Fuera de áreas específicas");
 
+                    Log.d("TrackingService", visitaActiva == null
+                            ? "Primera visita: " + nombreAreaActual
+                            : "Está en: " + nombreAreaActual);
+                } else {
+                    // Fuera de áreas específicas
                     Intent intent = new Intent("AREA_ACTUALIZADA");
                     intent.putExtra("nombre_area", "En tránsito");
                     sendBroadcast(intent);
-                }
-            }
-        } else {
-            // NO HAY VISITA ACTIVA
-            if (areaActual != -1) {
-                visitaRepository.crearVisita(fichajeActivoId, areaActual, 0);
-                String nombreArea = localizacionRepository.obtenerNombreLocalizacion(areaActual);
-                Log.d("TrackingService", "Primera visita: " + nombreArea);
 
-                Intent intent = new Intent("AREA_ACTUALIZADA");
-                intent.putExtra("nombre_area", nombreArea);
-                sendBroadcast(intent);
+                    Log.d("TrackingService", "Fuera de áreas específicas");
+                }
             }
         }
     }

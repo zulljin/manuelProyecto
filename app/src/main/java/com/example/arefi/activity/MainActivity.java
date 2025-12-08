@@ -123,40 +123,35 @@
 
         private void mostrarDatosEmpleado(int id) {
             Empleado empleado = empleadoRepository.obtenerEmpleadoPorId(id);
-
             if (empleado != null) {
                 tvNombre.setText("👤 " + empleado.getNombre());
             } else {
                 tvNombre.setText("👤 Desconocido");
             }
-
             actualizarEstadoFichaje();
         }
-
 
         private void actualizarEstadoFichaje() {
             // Obtener el fichaje activo del empleado
             Fichaje fichajeActivo = fichajeRepository.obtenerFichajeActivo(empleadoId);
-
             if (fichajeActivo != null) {
                 // ESTÁ TRABAJANDO
                 int idFichaje = fichajeActivo.getIdFichaje();
-
                 tvEstado.setText("🟢 TRABAJANDO");
                 tvEstado.setTextColor(getColor(android.R.color.holo_green_dark));
                 btnFichar.setText("🔴 FICHAR SALIDA");
                 btnFichar.setEnabled(true);
-
                 // Obtener la visita activa de ese fichaje
                 List<Visita> visitas = visitaRepository.obtenerVisitasPorFichaje(idFichaje);
                 Visita visitaActiva = null;
-                for (Visita v : visitas) {
-                    if (v.getHoraSalida() == null) { // significa que sigue activa
+                int i = 0;
+                while (i < visitas.size() && visitaActiva == null) {
+                    Visita v = visitas.get(i);
+                    if (v.getHoraSalida() == null) {
                         visitaActiva = v;
-                        break;
                     }
+                    i++;
                 }
-
                 if (visitaActiva != null) {
                     String nombreArea = localizacionRepository.obtenerNombreSegunVisita(visitaActiva.getIdVisita());
                     tvUbicacion.setText("Trabajando en: " + nombreArea);
