@@ -11,7 +11,7 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String NOMBRE_BASE_DATOS = "fichajes.db";
-    private static final int VERSION_BASE_DATOS = 21;
+    private static final int VERSION_BASE_DATOS = 23;
 
     public DBHelper(Context contexto) {
         super(contexto, NOMBRE_BASE_DATOS, null, VERSION_BASE_DATOS);
@@ -114,14 +114,14 @@ public class DBHelper extends SQLiteOpenHelper {
             long zonaAlmeria = insertarLocalizacion(db, "Almería", 36.8443, -2.4657, 1000, "ZONA", null);
             long zonaMurcia = insertarLocalizacion(db, "Murcia", 38.012621, -1.034319, 300, "ZONA", null);
             long zonaAlmoradi = insertarLocalizacion(db, "Almoradi", 38.1097287, -0.793078, 1000, "ZONA", null);
-
+            long zonaAguilas = insertarLocalizacion(db, "Aguilas", 37.427278, -1.5376185, 400, "ZONA", null );
             // ===== ÁREAS DE ALMERÍA ===== 36.844265, -2.465676 36.84494,-2.4594991
             long casaId = insertarLocalizacion(db, "Casa", 36.844265, -2.465676, 20, "AREA",  (int) zonaAlmeria);
             long invernaderoId = insertarLocalizacion(db, "Invernadero", 36.8440751, -2.4646237,30, "AREA", (int) zonaAlmeria);
             long semilleroId = insertarLocalizacion(db, "Semillero", 36.8446964, -2.4642306, 50, "AREA", (int) zonaAlmeria);
             long casaSergioId = insertarLocalizacion(db, "Casa Sergio", 36.844617, -2.458773, 50, "AREA", (int) zonaAlmeria);
             long casaPedro = insertarLocalizacion(db,"Casa Pedro", 38.109838, -0.7928808, 800, "AREA", (int) zonaAlmoradi);
-
+            long casaMama = insertarLocalizacion(db, "Casa Mama", 37.4272553, -1.5378269, 40, "AREA", (int) zonaAguilas);
             // ===== ÁREAS DE MURCIA =====
             long instiId = insertarLocalizacion(db, "Instituto", 38.0127969, -1.0342223, 60, "AREA", (int) zonaMurcia);
 
@@ -166,6 +166,13 @@ public class DBHelper extends SQLiteOpenHelper {
             insertarLocTarea(db, casaId, tarea16);
             insertarLocTarea(db, casaId, tarea17);
             insertarLocTarea(db, casaId, tarea18);
+
+            insertarLocTarea(db, casaMama, tarea13);
+            insertarLocTarea(db, casaMama, tarea14);
+            insertarLocTarea(db, casaMama, tarea15);
+            insertarLocTarea(db, casaMama, tarea16);
+            insertarLocTarea(db, casaMama, tarea17);
+            insertarLocTarea(db, casaMama, tarea18);
 
             // INVERNADERO
             insertarLocTarea(db, invernaderoId, tarea1);

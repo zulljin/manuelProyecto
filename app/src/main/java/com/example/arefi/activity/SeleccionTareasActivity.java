@@ -156,7 +156,8 @@ public class SeleccionTareasActivity extends AppCompatActivity {
         }
 
         Toast.makeText(this,
-                "✅ Fichaje completado\n" + tareasGuardadas + " tareas registradas",
+                "Fichaje completado\n" +
+                        " Tareas registradas con éxito",
                 Toast.LENGTH_LONG).show();
 
         Log.d("SeleccionTareas", "Total tareas guardadas: " + tareasGuardadas);
